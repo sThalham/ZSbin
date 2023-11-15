@@ -21,9 +21,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y --allow-unauthe
       python3-rosinstall-generator \
       python3-wstool \
       python3-rosdep \
-      && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get install --no-install-recommends -y --allow-unauthenticated --fix-missing \
+      git \
       wget \
       usbutils \
       vim \
@@ -38,8 +36,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y --allow-unauthe
       python3-virtualenv \
       python3-wheel \
       libopenblas-base \
-      numpy-scipy \
-      numpy-h5py \
+      python3-scipy \
+      python3-h5py \
+      libboost-all-dec \
       && apt-get clean \
       && rm -rf /var/lib/apt/lists/*
 
@@ -49,8 +48,9 @@ RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install opencv-python
 RUN python3 -m pip install transforms3d
 RUN python3 -m pip install glumpy
-RUN python3 -m pip install open3d
+#RUN python3 -m pip install open3d
 RUN python3 -m pip install opencv-python
+RUN python3 -m pip install boost
 
 RUN rosdep init && \
      rosdep update
